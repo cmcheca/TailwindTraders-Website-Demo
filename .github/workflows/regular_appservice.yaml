@@ -10,7 +10,8 @@ env:
   CI: false
   AZURE_WEBAPP_NAME: demoa17cf    # set this to your application's name
   AZURE_WEBAPP_PACKAGE_PATH: 'd:\a\TailwindTraders-Website-Drop'    
-  AZURE_WEBAPP_PROJECT_PATH: 'd:\a\TailwindTraders-Website-Demo\TailwindTraders-Website-Demo\Source\Tailwind.Traders.Web\Tailwind.Traders.Web.csproj'    
+  AZURE_WEBAPP_PROJECT_PATH: 'd:\a\TailwindTraders-Website-Demo\TailwindTraders-Website-Demo\Source\Tailwind.Traders.Web\Tailwind.Traders.Web.csproj'   
+  TEST: 'd:\a\TailwindTraders-Website-Demo\TailwindTraders-Website-Demo\Source\Tailwind.Traders.Web' 
 jobs:
   build:
 
@@ -31,12 +32,26 @@ jobs:
     - name: Build
       run: dotnet build ${{ env.AZURE_WEBAPP_PROJECT_PATH }} --configuration Release --no-restore  --verbosity Detailed
     - name: Test
-      run: dotnet test  ${{ env.AZURE_WEBAPP_PROJECT_PATH }} --no-restore --verbosity Detailed    
-    - name: Publish
-      run: dotnet publish ${{ env.AZURE_WEBAPP_PROJECT_PATH }} --configuration release --output ${{ env.AZURE_WEBAPP_PACKAGE_PATH }} --verbosity Detailed      
-    - name: 'Deploy to Azure WebApp'
-      uses: azure/webapps-deploy@v2
-      with:
+      run: dotnet test  ${{ env.AZURE_WEBAPP_PROJECT_PATH }} --no-restore --verbosity Detailed  
+        
+   # - name: Publish
+    #  run: dotnet publish ${{ env.AZURE_WEBAPP_PROJECT_PATH }} --configuration release --output ${{ env.AZURE_WEBAPP_PACKAGE_PATH }} --verbosity Detailed    
+        
+    - name: dotnet publish
+      working-directory: Source/Tailwind.Traders.Web
+      run: |
+        dotnet publish -c Release -o ${{env.TEST}}    
+        
+    - name: Run Azure webapp deploy action
+      uses: azure/webapps-deploy@v1
+      with: 
         app-name: ${{ env.AZURE_WEBAPP_NAME }}
-        publish-profile: ${{ secrets.TailwindtradersSecret }}
-        package: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
+        publish-profile: ${{ secrets.TAILWINDTRADERSSECRET }}
+        package: ${{env.TEST}}
+        
+   # - name: 'Deploy to Azure WebApp'
+   #   uses: azure/webapps-deploy@v2
+   #   with:
+    #    app-name: ${{ env.AZURE_WEBAPP_NAME }}
+    #    publish-profile: ${{ secrets.TailwindtradersSecret }}
+     #   package: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
