@@ -37,7 +37,7 @@ jobs:
       with:
         app-name: ${{ env.AZURE_WEBAPP_NAME }}
         publish-profile: ${{ secrets.TailwindtradersSecret }}
-        package: ${{ env.AZURE_WEBAPP_PROJECT_PATH }}
+        package: 'd:\a\TailwindTraders-Website-Demo\TailwindTraders-Website-Demo\Source\Tailwind.Traders.Web' 
    #- name: Publish
     #  run: dotnet publish ${{ env.AZURE_WEBAPP_PROJECT_PATH }} --configuration release --output ${{ env.AZURE_WEBAPP_PACKAGE_PATH }} --verbosity Detailed      
     #- name: 'Deploy to Azure WebApp'
