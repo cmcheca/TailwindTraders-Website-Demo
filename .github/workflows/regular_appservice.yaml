@@ -35,7 +35,7 @@ jobs:
     - name: Publish
       run: dotnet publish ${{ env.AZURE_WEBAPP_PROJECT_PATH }} --configuration release --output ${{ env.AZURE_WEBAPP_PACKAGE_PATH }} --verbosity Detailed      
     - name: 'Deploy to Azure WebApp'
-      uses: azure/webapps-deploy@v2
+      uses: azure/webapps-deploy@v1
       with:
         app-name: ${{ env.AZURE_WEBAPP_NAME }}
         publish-profile: ${{ secrets.TailwindtradersSecret }}
