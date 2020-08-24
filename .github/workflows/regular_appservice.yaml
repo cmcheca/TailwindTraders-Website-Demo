@@ -8,8 +8,8 @@ env:
   CI: false
   AZURE_WEBAPP_NAME: devopswithgithub-carmenc-13af2    # set this to your application's name
   AZURE_WEBAPP_PACKAGE_PATH: 'd:\a\TailwindTraders-Website-Demo-Drop'    
-  AZURE_WEBAPP_PROJECT_PATH_CLIENTAPP: 'd:\a\TailwindTraders-Website-Demo\TailwindTraders-Website-Demo\Source\Tailwind.Traders.Web\ClientApp'
-  AZURE_WEBAPP_PROJECT_PATH: 'd:\a\TailwindTraders-Website-Demo\TailwindTraders-Website-Demo\Source\Tailwind.Traders.Web'
+  AZURE_WEBAPP_PROJECT_PATH_CLIENTAPP: 'd:\a\TailwindTraders-Website-Demo\TailwindTraders-Website\Source\Tailwind.Traders.Web\ClientApp'
+  AZURE_WEBAPP_PROJECT_PATH: 'd:\a\TailwindTraders-Website-Demo\TailwindTraders-Website\Source\Tailwind.Traders.Web'
   #AZURE_WEBAPP_PROJECT_PATH: 'd:\a\TailwindTraders-Website\TailwindTraders-Website\Source\Tailwind.Traders.Web\Tailwind.Traders.Web.csproj'
 
 jobs:
