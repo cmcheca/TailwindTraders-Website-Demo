@@ -21,7 +21,7 @@ jobs:
         node-version: 10.15.3
     
     - name: Install dependencies in client app
-      working-directory: Source/Tailwind.Traders.Web/ClientApp
+      working-directory: ./Source/Tailwind.Traders.Web/ClientApp
       run: npm install
 
     - name: Setup .NET Core
@@ -30,17 +30,17 @@ jobs:
         dotnet-version: 3.1.101
         
     - name: Build with dotnet
-      working-directory: Source/Tailwind.Traders.Web
+      working-directory: ./Source/Tailwind.Traders.Web
       run: dotnet build --configuration Release
       
     - name: dotnet publish
-      working-directory: Source/Tailwind.Traders.Web
+      working-directory: ./Source/Tailwind.Traders.Web
       run: |
-        dotnet publish -c Release -o Source/Tailwind.Traders.Web/
+        dotnet publish -c Release -o ./Source/Tailwind.Traders.Web/
         
     - name: Run Azure webapp deploy action
       uses: azure/webapps-deploy@v1
       with: 
         app-name: ${{ env.AZURE_WEBAPP_NAME }}
         publish-profile: ${{ secrets.TAILWINDTRADERSSECRET }}
-        package: Source/Tailwind.Traders.Web/
+        package: ./Source/Tailwind.Traders.Web/
