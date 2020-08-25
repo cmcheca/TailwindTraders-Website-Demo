@@ -6,6 +6,7 @@ on:
       - main
 env:
   CI: false
+  DEPLOYMENT_MODE: frontendOnly
   AZURE_WEBAPP_NAME: demo13af2 # set this to your application's name
 
 jobs:
@@ -38,11 +39,11 @@ jobs:
       run: |
         dotnet publish -c Release -o ./Source/Tailwind.Traders.Web/
         
-    - name: Upload artifact           
-      uses: actions/upload-artifact@v1
-      with:
-        name: webapp-artifact        
-        path: ./Source/Tailwind.Traders.Web/
+    #- name: Upload artifact           
+      #uses: actions/upload-artifact@v1
+      #with:
+        #name: webapp-artifact        
+        #path: ./Source/Tailwind.Traders.Web/
         
     - name: Run Azure webapp deploy action
       uses: azure/webapps-deploy@v1
