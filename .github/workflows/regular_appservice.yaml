@@ -5,6 +5,7 @@ on:
     branches:
       - main
 env:
+  CI: false
   AZURE_WEBAPP_NAME: demo13af2 # set this to your application's name
 
 jobs:
