@@ -42,5 +42,5 @@ jobs:
       uses: azure/webapps-deploy@v1
       with: 
         app-name: ${{ env.AZURE_WEBAPP_NAME }}
-        publish-profile: ${{ secrets.TailwindtradersSecret }}
+        publish-profile: ${{ secrets.TAILWINDTRADERSSECRET }}
         package: ${{env.DOTNET_ROOT}}\Source\Tailwind.Traders.Web
